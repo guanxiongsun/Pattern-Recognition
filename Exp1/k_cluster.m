@@ -6,7 +6,7 @@ y = double(SampleLabels);
 [m, n] = size(dataset);
 k =10;
 [centers , data_new] = train_classifier (dataset, k);
-imshow()
+%imshow()
 %T用来计数，是一个10*10的矩阵，记录每个聚类中不同数字的个数%
 T = zeros(10,10);
 for i=1:10
