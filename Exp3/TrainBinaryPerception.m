@@ -14,11 +14,13 @@ function [a] = TrainBinaryPerception(Data,Labels)
     temp_score = Data*a;
     if(temp_score(k+1)<=0)
         a = a+Data(k+1,:)';
+        t = Data*a;
+        J = -sum(t(t<=0));
     end
     if((Data*a)>0)
         break
     else
-        k=mod(k+1,m);  
+        k=mod(k+1,m);
     end
     end
 end
