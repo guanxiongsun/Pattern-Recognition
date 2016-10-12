@@ -1,0 +1,6 @@
+load Samples
+
+%处理数据增加偏置列%
+Data = [ones(size(TrainSamples,1),1),TrainS]
+
+[A] = TrainPerception(Data,Labels, k);
