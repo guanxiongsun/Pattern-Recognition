@@ -1,4 +1,3 @@
-load Samples.mat
 load SimpleSamples.mat
 
 %训练感知器分类器，输入数据DATA, Labels, k是种类数%
@@ -11,3 +10,6 @@ plot(w1(:,1),w1(:,2),'r+')
 hold on
 plot(w2(:,1),w2(:,2),'*')
 [a] = TrainBinaryPerception(SimpleTest_new,SimpleLabels);
+x=linspace(0,2);
+y=-a(2)*x/a(3)-a(1)/a(3);
+plot(x,y);

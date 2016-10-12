@@ -9,19 +9,16 @@ function [a] = TrainBinaryPerception(Data,Labels)
     
     %梯度下降计算a%
     k=0;
-    x=linspace(0,2);
     while 1
     %计算准则函数J（A）%
     temp_score = Data*a;
     if(temp_score(k+1)<=0)
         a = a+Data(k+1,:)';
-        y=-a(2)*x/a(3)-a(1)/a(3);
     end
     if((Data*a)>0)
         break
     else
-        k=mod(k+1,m)  
+        k=mod(k+1,m);  
     end
     end
-    plot(x,y);
 end
