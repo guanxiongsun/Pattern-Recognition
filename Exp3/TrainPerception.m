@@ -1,7 +1,7 @@
 %通过data和Labels训练感知器，种类数为k
 function [A] = TrainPerception(Data,Labels, K)
 %DATA,LABELS,k是种类数%
-    [m,n] = size(Data);
+    [~,n] = size(Data);
     A = zeros(n,K);
     %使用一对多的方式训练多类分类器%
     for i=1:K
