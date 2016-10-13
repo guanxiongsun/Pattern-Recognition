@@ -1,0 +1,8 @@
+function [a] = TrainBinaryLMSE(Data,Labels)
+    [m,~] = size(Data);
+    b = ones(m,1);
+    
+    Y= Data;
+    Y_p = (Y'*Y)\Y';
+    a = Y_p*b;
+end
