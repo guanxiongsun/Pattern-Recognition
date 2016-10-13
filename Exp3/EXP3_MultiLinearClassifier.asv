@@ -10,16 +10,11 @@ K = 10;
 TestData = [ones(size(TestSamples,1),1),TestSamples];
 %得到参数矩阵A。每列对应一个数字的分类器，第i列对应数字(i-1);%
 Score = (TestData*A>0);
-result = zeros(size(TestLabels));
-
+[row,col] = find(Score' == 1);
+result = -ones(size(TestLabels));
+result(col) = row-1;
 
 for i=1:size(Score,1)
-    if (sum(Score(i,:))~= 1)
-        result(i) = -1;
-    else
-        result(i) = find(Score(i,:)==1)-1;
-    end
+    if (sum(Score(i,:)~= 1))
+        result(i) = 
 end
-
-t = (result==TestLabels);
-Precision = sum(t)/size(TestLabels,1)
