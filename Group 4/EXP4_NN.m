@@ -34,7 +34,7 @@ net.trainParam.goal=0.000004;
 net.trainParam.max_fail=15;
 %net.trainParam.lr = 0.01;
 
-net.layers{1}.transferFcn = 'poslin';
+net.layers{1}.transferFcn = 'tansig';
 net.layers{2}.transferFcn = 'purelin';
 %net.layers{3}.transferFcn = 'purelin';
 %net.layers{3}.transferFcn = 'purelin';
