@@ -13,10 +13,10 @@ W = [W;zeros(1,c)];
 %计算Loss,规定lamda
 %采用mini-batch梯度下降方法 b= 256
 lamda = 50000;
-b = 256;
+b = 300;
 lr = 1e-7;
 iter = 0;
-max_iter = 5000;
+max_iter = 1000;
 threshold = 0.1;
 while true
     %计算梯度使用~小批量梯度下降法
