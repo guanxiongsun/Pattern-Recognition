@@ -8,7 +8,7 @@ load Trainlabels.csv
 Data = [TrainSamples Trainlabels];
 
 %输入Data是一个20000x121的矩阵返回18000,2000的子集
-[Train_t,Train_t_labels, Train_val, Train_val_labels] = DivideData(Data, 0.8);
+[Train_t,Train_t_labels, Train_val, Train_val_labels] = DivideData(Data, 0.9);
 clear TrainSamples
 clear Trainlabels
 TrainSamples = Train_t;
@@ -39,13 +39,13 @@ clear Trainlabels_new
 
 Data_batch = Data_batch';
 Label_batch = Label_batch';
-net=newff(Data_batch,Label_batch,[60]);
+net=newff(Data_batch,Label_batch,[84]);
 
-net.trainFcn = 'traingdx';
+net.trainFcn = 'traingd';
 net.trainParam.epochs=100000;
 net.trainParam.goal=0.000004;
 net.trainParam.max_fail=50;
-%net.trainParam.lr = 0.5;
+net.trainParam.lr = 0.5;
 
 net.layers{1}.transferFcn = 'tansig';
 %net.layers{2}.transferFcn = 'tansig';
