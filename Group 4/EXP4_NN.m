@@ -39,9 +39,13 @@ clear Trainlabels_new
 
 Data_batch = Data_batch';
 Label_batch = Label_batch';
-net=newff(Data_batch,Label_batch,[60]);
+net=newff(Data_batch,Label_batch,[84]);
 
-net.trainFcn = 'traingdx';
+
+%net.trainFcn = 'traingd';      %普通梯度下降速度慢
+% net.trainFcn = 'traingdx';    %自适应学习率
+% net.trainFcn = 'trainlm';     %lm法训练，内存占用太大
+net.trainFcn = 'traincgb';      %共轭梯度法
 net.trainParam.epochs=100000;
 net.trainParam.goal=0.000004;
 net.trainParam.max_fail=50;
