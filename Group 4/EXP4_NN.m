@@ -8,7 +8,7 @@ load Trainlabels.csv
 Data = [TrainSamples Trainlabels];
 
 %输入Data是一个20000x121的矩阵返回18000,2000的子集
-[Train_t,Train_t_labels, Train_val, Train_val_labels] = DivideData(Data, 0.8);
+[Train_t,Train_t_labels, Train_val, Train_val_labels] = DivideData(Data, 0.9);
 clear TrainSamples
 clear Trainlabels
 TrainSamples = Train_t;
@@ -27,6 +27,8 @@ b = m;
 TrainSamples=mapminmax(TrainSamples);
 Testsamples1=mapminmax(Testsamples1);
 Trainlabels_new = -ones(m,c);
+%Trainlabels_new = zeros(m,c);
+
 for i =1:m
     Trainlabels_new(i,Trainlabels(i)+1) = 1;
 end
@@ -39,11 +41,11 @@ clear Trainlabels_new
 
 Data_batch = Data_batch';
 Label_batch = Label_batch';
-net=newff(Data_batch,Label_batch,[84]);
+net=newff(Data_batch,Label_batch,[84,84]);
 
 
 %net.trainFcn = 'traingd';      %普通梯度下降速度慢
-% net.trainFcn = 'traingdx';    %自适应学习率
+%net.trainFcn = 'traingdx';    %自适应学习率
 % net.trainFcn = 'trainlm';     %lm法训练，内存占用太大
 net.trainFcn = 'traincgb';      %共轭梯度法
 net.trainParam.epochs=100000;
@@ -52,8 +54,8 @@ net.trainParam.max_fail=50;
 %net.trainParam.lr = 0.5;
 
 net.layers{1}.transferFcn = 'tansig';
-%net.layers{2}.transferFcn = 'tansig';
-net.layers{2}.transferFcn = 'purelin';
+net.layers{2}.transferFcn = 'tansig';
+net.layers{3}.transferFcn = 'purelin';
 %net.layers{3}.transferFcn = 'purelin';
 
 %网络训练
