@@ -1,0 +1,4 @@
+load Data.csv
+[m,n] = size(Data);
+data_1 = reshape(Data,[1,m*n]);
+f = evcdf(data_1,0,3);
